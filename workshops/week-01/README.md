@@ -3,6 +3,7 @@
 ## 🎯 Workshop Objectives
 
 By the end of this workshop, you will:
+
 - Set up your complete development environment
 - Learn the Git workflow for this course
 - Create your first AI agent using LangChain
@@ -11,6 +12,7 @@ By the end of this workshop, you will:
 ## 🛠️ Prerequisites
 
 Before starting this workshop, ensure you have:
+
 - Python 3.8+ installed
 - Git installed and configured
 - A GitHub account
@@ -20,8 +22,11 @@ Before starting this workshop, ensure you have:
 ## 📋 Workshop Agenda
 
 ### Part 1: Environment Setup (30 minutes)
+
 ### Part 2: Git Workflow (30 minutes)
+
 ### Part 3: First AI Agent (60 minutes)
+
 ### Part 4: Submission Process (30 minutes)
 
 ---
@@ -68,6 +73,7 @@ HUGGINGFACE_API_KEY=your_huggingface_api_key_here
 ```
 
 **Note**: You'll need to get API keys from:
+
 - [OpenAI](https://platform.openai.com/api-keys)
 - [Hugging Face](https://huggingface.co/settings/tokens)
 
@@ -129,43 +135,43 @@ load_dotenv()
 
 def create_simple_agent():
     """Create a simple AI agent using OpenAI"""
-    
+
     # Initialize the language model
     llm = OpenAI(temperature=0.7)
-    
+
     # Create a prompt template
     template = """
     You are a helpful AI assistant. Answer the following question:
-    
+
     Question: {question}
-    
+
     Answer:"""
-    
+
     prompt = PromptTemplate(
         input_variables=["question"],
         template=template
     )
-    
+
     # Create the chain
     chain = LLMChain(llm=llm, prompt=prompt)
-    
+
     return chain
 
 def main():
     """Main function to test the agent"""
-    
+
     # Create the agent
     agent = create_simple_agent()
-    
+
     # Test questions
     test_questions = [
         "What is generative AI?",
         "Explain the difference between supervised and unsupervised learning",
         "What are the main challenges in AI deployment?"
     ]
-    
+
     print("🤖 Simple AI Agent Test\n")
-    
+
     for i, question in enumerate(test_questions, 1):
         print(f"Question {i}: {question}")
         try:
@@ -173,7 +179,7 @@ def main():
             print(f"Answer: {response}\n")
         except Exception as e:
             print(f"Error: {e}\n")
-        
+
         print("-" * 50)
 
 if __name__ == "__main__":
@@ -196,44 +202,44 @@ load_dotenv()
 
 def create_interactive_agent():
     """Create an interactive AI agent with memory"""
-    
+
     # Initialize the language model
     llm = OpenAI(temperature=0.7)
-    
+
     # Create memory for conversation
     memory = ConversationBufferMemory()
-    
+
     # Create conversation chain
     conversation = ConversationChain(
         llm=llm,
         memory=memory,
         verbose=True
     )
-    
+
     return conversation
 
 def chat_interface():
     """Interactive chat interface"""
-    
+
     print("🤖 Interactive AI Agent")
     print("Type 'quit' to exit\n")
-    
+
     # Create the agent
     agent = create_interactive_agent()
-    
+
     while True:
         # Get user input
         user_input = input("You: ").strip()
-        
+
         # Check for quit command
         if user_input.lower() in ['quit', 'exit', 'bye']:
             print("Goodbye! 👋")
             break
-        
+
         # Skip empty input
         if not user_input:
             continue
-        
+
         try:
             # Get response from agent
             response = agent.predict(input=user_input)
@@ -261,29 +267,29 @@ load_dotenv()
 
 class CodeReviewAgent:
     """Specialized agent for code review"""
-    
+
     def __init__(self):
         self.llm = OpenAI(temperature=0.3)
-        
+
         self.prompt_template = PromptTemplate(
             input_variables=["code", "language"],
             template="""
             You are an expert code reviewer. Review the following {language} code:
-            
+
             Code:
             {code}
-            
+
             Please provide:
             1. Code quality assessment
             2. Potential issues or bugs
             3. Suggestions for improvement
             4. Security considerations (if applicable)
-            
+
             Review:"""
         )
-        
+
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt_template)
-    
+
     def review_code(self, code, language="Python"):
         """Review the provided code"""
         try:
@@ -294,27 +300,27 @@ class CodeReviewAgent:
 
 def main():
     """Test the specialized code review agent"""
-    
+
     # Create the agent
     agent = CodeReviewAgent()
-    
+
     # Sample code to review
     sample_code = """
     def calculate_fibonacci(n):
         if n <= 1:
             return n
         return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)
-    
+
     # Test the function
     result = calculate_fibonacci(10)
     print(result)
     """
-    
+
     print("🔍 Code Review Agent Test\n")
     print("Sample Code:")
     print(sample_code)
     print("-" * 50)
-    
+
     # Get review
     review = agent.review_code(sample_code, "Python")
     print("Code Review:")
@@ -350,23 +356,28 @@ Create `student-submissions/<your-username>/week-01/README.md`:
 # Week 1 Submission - [Your Name]
 
 ## Environment Setup
+
 - [x] Python 3.8+ installed
 - [x] Virtual environment created
 - [x] Dependencies installed
 - [x] API keys configured
 
 ## Completed Exercises
+
 - [x] Simple AI Agent
 - [x] Interactive Chat Agent
 - [x] Specialized Code Review Agent
 
 ## Challenges Faced
+
 [Describe any challenges you encountered and how you solved them]
 
 ## Learning Outcomes
+
 [What did you learn from this workshop?]
 
 ## Next Steps
+
 [What would you like to explore next?]
 ```
 
@@ -412,4 +423,4 @@ Then go to GitHub and create a pull request from your `week-01-setup` branch to 
 
 ---
 
-**Remember**: The goal is to learn by doing. Don't worry if everything doesn't work perfectly on the first try! 
+**Remember**: The goal is to learn by doing. Don't worry if everything doesn't work perfectly on the first try!
