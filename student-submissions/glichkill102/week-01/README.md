@@ -22,3 +22,8 @@
 - Fix all the errors
 - Add error handling to agents
 - Dockerize the project
+
+## Student Information
+- Name: Abinezer Tewodros
+- Discord: @glichkill102 
+- GitHub: [AbinezerTewodros](https://github.com/AbinezerTewodros)
